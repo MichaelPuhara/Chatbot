@@ -33,16 +33,6 @@ def openai_create(prompt):
 
 
 
-def chatgpt_clone(input, history):
-    history = history or []
-    s = list(sum(history, ()))
-    s.append(input)
-    inp = ' '.join(s)
-    output = openai_create(inp)
-    history.append((input, output))
-    return history, history
-
-
 st.title("Pātai Bot Aotearoa")
 
 history = st.empty()
