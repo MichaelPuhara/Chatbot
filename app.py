@@ -43,16 +43,13 @@ def chatgpt_clone(input, history):
     return history, history
 
 
-block = gr.Blocks()
+st.title("Pātai Bot Aotearoa")
 
+history = st.empty()
 
-with block:
-    gr.Markdown("""<h1><center>Pātai Bot Aotearoa</center></h1>
-    """)
-    chatbot = gr.Chatbot()
-    message = gr.Textbox(placeholder=prompt)
-    state = gr.State()
-    submit = gr.Button("SEND")
-    submit.click(chatgpt_clone, inputs=[message, state], outputs=[chatbot, state])
+message = st.text_input(prompt)
 
-block.launch(share = True)
+if message:
+    history, output = chatgpt_clone(message, history)
+    st.write(start_sequence + output)
+
